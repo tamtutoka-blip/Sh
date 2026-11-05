@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Для Шахзоды ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a18cd1, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism styling */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(255, 105, 135, 0.3);
+        }
+
+        /* Animations */
+        @keyframes pulse-heart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .animate-heartbeat {
+            animation: pulse-heart 1.2s infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .animate-pop {
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes bounce-fun {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        .animate-bounce-fun {
+            animation: bounce-fun 2s ease-in-out infinite;
+        }
+
+        .romantic-text {
+            font-family: 'Pacifico', cursive;
+        }
+
+        /* Prevent button highlighting on mobile tap */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Transition for screens */
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .hidden-screen {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9);
+            z-index: -1;
+        }
+
+        .active-screen {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            z-index: 10;
+        }
+
+        .btn-run {
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SCREEN 1: ENVELOPE -->
+    <div id="screen-envelope" class="screen active-screen">
+        <div class="cursor-pointer animate-float" onclick="openLetter()">
+            <div class="relative flex justify-center items-center">
+                <!-- Envelope SVG -->
+                <svg width="250" height="180" viewBox="0 0 24 24" fill="white" class="drop-shadow-2xl opacity-90">
+                    <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" fill="#ff758c"/>
+                </svg>
+                <!-- Pulsing Heart Button -->
+                <div class="absolute animate-heartbeat">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-pink-200">
+                        <span class="text-4xl">❤️</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-white font-semibold mt-6 text-lg tracking-wide drop-shadow-md">Открой меня...</p>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: THE LETTER -->
+    <div id="screen-letter" class="screen hidden-screen p-4">
+        <div class="glass rounded-3xl p-8 md:p-12 max-w-lg w-full text-center relative overflow-hidden">
+            <!-- Decorative corner hearts -->
+            <span class="absolute top-4 left-4 text-2xl opacity-50 rotate-[-20deg]">💕</span>
+            <span class="absolute bottom-4 right-4 text-2xl opacity-50 rotate-[20deg]">✨</span>
+
+            <h1 class="romantic-text text-4xl md:text-5xl text-pink-600 mb-6 drop-shadow-sm">Шахзода...</h1>
+            
+            <p class="text-gray-800 text-lg md:text-xl leading-relaxed mb-10 font-medium">
+                Я знаю, что прошлый раз был неудачным.<br><br>
+                Но в этот раз всё будет по-другому.<br>
+                <span class="font-bold text-pink-600 block mt-2 text-xl">Я очень сильно тебя люблю.</span><br>
+                Ты согласна?
+            </p>
+
+            <div class="flex justify-center items-center gap-6 h-16" id="buttons-container">
+                <button id="btn-yes" onclick="sayYes()" class="bg-gradient-to-r from-pink-400 to-rose-500 hover:from-pink-500 hover:to-rose-600 text-white font-bold py-3 px-10 rounded-full shadow-lg transform transition hover:scale-110 active:scale-95 text-lg">
+                    Да! 🥰
+                </button>
+                <button id="btn-no" class="btn-run bg-gray-300 text-gray-700 font-bold py-3 px-8 rounded-full shadow-md text-lg absolute" style="position: relative;">
+                    Нет
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: CELEBRATION -->
+    <div id="screen-celebration" class="screen hidden-screen">
+        <div class="text-center flex flex-col items-center justify-center space-y-8 p-4 w-full h-full">
+            
+            <!-- Floating Emojis Container -->
+            <div class="flex justify-center items-end space-x-4 mb-4">
+                <div class="text-8xl md:text-9xl animate-bounce-fun" style="animation-delay: 0.1s;">💐</div>
+                <div class="text-8xl md:text-9xl animate-bounce-fun" style="animation-delay: 0.4s;">🧸</div>
+                <div class="text-8xl md:text-9xl animate-bounce-fun" style="animation-delay: 0.2s;">🌹</div>
+            </div>
+
+            <div class="glass rounded-3xl p-6 md:p-10 animate-pop mt-8">
+                <h1 class="romantic-text text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-rose-500 drop-shadow-lg">
+                    Я ТЕБЯ ЛЮБЛЮ!!! ❤️
+                </h1>
+                <p class="mt-4 text-gray-800 text-lg md:text-xl font-semibold">
+                    Ты сделала меня самым счастливым!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const screenEnvelope = document.getElementById('screen-envelope');
+        const screenLetter = document.getElementById('screen-letter');
+        const screenCelebration = document.getElementById('screen-celebration');
+        const btnNo = document.getElementById('btn-no');
+        const btnYes = document.getElementById('btn-yes');
+        const buttonsContainer = document.getElementById('buttons-container');
+
+        // Transition from Envelope to Letter
+        function openLetter() {
+            screenEnvelope.classList.remove('active-screen');
+            screenEnvelope.classList.add('hidden-screen');
+            
+            // Short timeout to sync animations nicely
+            setTimeout(() => {
+                screenLetter.classList.remove('hidden-screen');
+                screenLetter.classList.add('active-screen');
+            }, 300);
+        }
+
+        // Transition from Letter to Celebration
+        function sayYes() {
+            screenLetter.classList.remove('active-screen');
+            screenLetter.classList.add('hidden-screen');
+            
+            setTimeout(() => {
+                screenCelebration.classList.remove('hidden-screen');
+                screenCelebration.classList.add('active-screen');
+                createConfetti();
+            }, 300);
+        }
+
+        // The "Run Away" logic for the 'No' button
+        function dodgeButton() {
+            // Change position to fixed so it can roam the entire screen
+            btnNo.style.position = 'fixed';
+            
+            const btnWidth = btnNo.offsetWidth;
+            const btnHeight = btnNo.offsetHeight;
+            
+            // Calculate random positions ensuring it stays within viewport
+            // Adding padding so it doesn't stick directly to the extreme edges
+            const padding = 20;
+            const maxX = window.innerWidth - btnWidth - padding;
+            const maxY = window.innerHeight - btnHeight - padding;
+            
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+            
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        // Add event listeners for both mouse hover and touch devices
+        btnNo.addEventListener('mouseover', dodgeButton);
+        btnNo.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent the actual tap/click from registering
+            dodgeButton();
+        });
+
+        // Simple floating confetti effect for the celebration screen
+        function createConfetti() {
+            const colors = ['#ff758c', '#ff7eb3', '#fbc2eb', '#a18cd1', '#ffffff'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                confetti.style.opacity = Math.random() + 0.2;
+                
+                // Animation logic
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 2;
+                
+                confetti.animate([
+                    { transform: `translate3d(0, 0, 0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate3d(${Math.random()*100 - 50}px, 100vh, 0) rotate(${Math.random()*360}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    delay: delay * 1000,
+                    iterations: Infinity
+                });
+                
+                screenCelebration.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
